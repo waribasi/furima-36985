@@ -12,7 +12,7 @@
 
 ### Association
 -has_many :items
--has_many :pur
+-has_many :purs
 
 
 ## itemsテーブル
@@ -26,37 +26,37 @@
 | area_id   | integer  | null: false                   | 発送元地域
 | del_day_id | integer | null: false                   | 配送日
 | price  | integer    | null: false                    | 価格
-| seller | string    | null: false                     |出品者
+| seller | references | null: false, foreign_key: true |出品者
 
 ### Association
 -belongs_to :user
 -has_one :pur
 
 
-## purテーブル
+## pursテーブル
 | Column | Type       | Options                        | 購入テーブル
 | ------ | ---------- | ------------------------------ |
-| buyer  |  string    | null: false, foreign_key: true | 購入者
-| pur_his | string    | null: false, foreign_key: true | 購入履歴
+| user   | references | null: false, foreign_key: true | 購入者
+| item   | references | null: false, foreign_key: true | 購入履歴
 
 ### Association
+-belongs_to :users
 -belongs_to :item
 -has_one :shi_add
 
 
-## shi_addテーブル
+## shi_addsテーブル
 
 | Column | Type           | Options                        | 配送先テーブル
 | ------ | ---------------| -------------------------------|
-| pos_code | string       | null: false, foreign_key: true | 郵便番号
-| prefect_id | integer    | null: false, foreign_key: true | 都道府県
-| municipal | string      | null: false, foreign_key: true | 市区町村
-| add |  string           | null: false, foreign_key: true | 番地
-| build | string          | foreign_key: true              | 建物名
-| tel_num | string        | null: false, foreign_key: true | 電話番号
+| pos_code | string       | null: false                    | 郵便番号
+| prefect_id | integer    | null: false                    | 都道府県
+| municipal | string      | null: false                    | 市区町村
+| add |  string           | null: false                    | 番地
+| build | string          |                                | 建物名
+| tel_num | string        | null: false,                   | 電話番号
 
 ### Association
--belongs_to :item
 -belongs_to :pur
 
 <!-- 以下はメモ欄 -------------------------------------------------------------------------------------------------------->
@@ -66,4 +66,5 @@
 <!-- integer -->
 <!-- Shipping address = 配送先 -->
 <!-- スペルミスに気づきやすいようにカラムはなるべく短くする -->
-<!-- Purchase history=購入履歴 -->
+<!-- Purchase history=購入履歴 しかし勘違いだったw-->
+<!-- references -->
