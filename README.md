@@ -1,54 +1,67 @@
 ## usersテーブル
-| Column | Type       | Options                        |
+| Column | Type       | Options                         | ユーザーテーブル
 | ------ | ---------- | ------------------------------  |
-| nickname  | storing | null: false                      |
-| email | storing | null: false, ユニーク制約              |
-| password    | storing | null: false, 6字以上半角英数字混  |
-| name    | storing | null: false, 全角                   |
-| name_kana | storing | null: false, 全角カナ              |
-| birthday        | storing | null: false                |
+| nickname  | string | null: false                      | ニックネーム
+| email | string | null: false, unique: true            | メルアド
+| encrypted_password | string | null: false             | パスワード
+| name_ue   | string | null: false                      | 名前（姓)
+| name_st   | string | null: false                      | 名前（名）
+| kana_ue   | string | null: false                      | 名前（姓）カナ
+| kana_st   | string | null: false                      | 名前（名）カナ
+| birthday  | date   | null: false                      | 生年月日
 
 ### Association
 -has_many :items
--has_many :purchases
+-has_many :pur
+
 
 ## itemsテーブル
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| image  | storing  | null: false                      |
-| item   | storing  | null: false                      |
-| explanation | text     | null: false                 |
-| category | storing  | null: false                    |
-| status | storing  | null: false                      |
-| delivery_fee | storing   | null: false               |
-| area | storing  | null: false                        |
-| deliver_day | storing  | null: false                 |
-| price | storing   | null: false, 半角数字              |
+| Column | Type       | Options                        | 商品テーブル
+| ------ | ---------- | -------------------------------|
+| item   | string     | null: false, foreign_key: true | 商品
+| exp    | text       | null: false, foreign_key: true | 商品説明文
+| cate   | string     | null: false, foreign_key: true | カテゴリー
+| status | string     | null: false, foreign_key: true | 商品状態
+| del_fee | string    | null: false, foreign_key: true | 配送料
+| area   | string     | null: false, foreign_key: true | 発送元地域
+| del_day | string    | null: false, foreign_key: true | 配送日
+| price  | integer    | null: false, foreign_key: true | 価格
 
 ### Association
--belongs_to :users
--has_one :purchases
+-belongs_to :user
+-has_one :pur
 
 
-## purchasesテーブル
-
-| Column | Type       | Options                        |
+## purテーブル
+| Column | Type       | Options                        | 購入テーブル
 | ------ | ---------- | ------------------------------ |
-| postal_code | storing    | null: false, 3桁-4桁       |
-| prefectures | storing    | null: false                |
-| municipalities | storing | null: false                 |
-| address |  storing       | null: false                  |
-| building |  storing      |                               |
-| telephone_number | storing | null: false,10桁以上11桁以内    |
-
+| seller |  string    | null: false, foreign_key: true | 出品者
+| buyer  |  string    | null: false, foreign_key: true | 購入者
 
 ### Association
--has_one :items
--belongs_to :users
+-belongs_to :item
+-has_one :shi_add
 
 
+## shi_addテーブル
 
+| Column | Type           | Options                        | 配送先テーブル
+| ------ | ---------------| -------------------------------|
+| pos_code | string       | null: false, foreign_key: true | 郵便番号
+| prefect_id | string     | null: false, foreign_key: true | 都道府県
+| municipal_id | string   | null: false, foreign_key: true | 市区町村
+| add |  string           | null: false, foreign_key: true | 番地
+| build | string          | foreign_key: true              | 建物名
+| tel_num | string        | null: false, foreign_key: true | 電話番号
 
+### Association
+-belongs_to :item
+-belongs_to :pur
 
 <!-- 以下はメモ欄 -------------------------------------------------------------------------------------------------------->
-<!-- | password(確認) | storing | null: false                | -->
+
+<!-- foreign_key: true -->
+<!-- 購入履歴必要か -->
+<!-- integer -->
+<!-- Shipping address = 配送先 -->
+<!-- スペルミスに気づきやすいようにカラムはなるべく短くする -->
