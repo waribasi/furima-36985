@@ -84,4 +84,3 @@ end
 # Email can't be blank
 # Password can't be blank
 # カラム名 is invalid = 文字制限をしたときのエラー文
-#パスワードだけうまく機能しない
