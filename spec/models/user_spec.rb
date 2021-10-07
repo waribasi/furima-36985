@@ -14,11 +14,23 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
+
     it 'emailが空では登録できない' do
       @user.email = ' '
       @user.valid?
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
+    it '重複したメールアドレスは登録できない' do
+
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email can't be blank")
+    end
+    it 'メールアドレスに@を含まない場合は登録できない' do
+      @user.email = monimoni
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email can't be blank")
+    end
+
     it 'パスワードが空だと登録できない' do
       @user.password = ' '
       @user.valid?
@@ -73,8 +85,8 @@ RSpec.describe User, type: :model do
 end
 
 # 以下はメモ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-# it '' do
-# end
+it '' do
+end
 # Nickname can't be blank
 # Name ue can't be blank
 # Name st can't be blank
@@ -84,3 +96,5 @@ end
 # Email can't be blank
 # Password can't be blank
 # カラム名 is invalid = 文字制限をしたときのエラー文
+# ・重複したメールアドレスは登録できない
+# ・メールアドレスに@を含まない場合は登録できない
