@@ -21,14 +21,16 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Email can't be blank")
     end
     it '重複したメールアドレスは登録できない' do
-
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Email can't be blank")
+      @user.save
+      another_user = FactoryBot.build(:user)
+      another_user.email = @user.email
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
     it 'メールアドレスに@を含まない場合は登録できない' do
-      @user.email = monimoni
+      @user.email = 'monimoni'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email can't be blank")
+      expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
     it 'パスワードが空だと登録できない' do
@@ -36,6 +38,32 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
+    it 'パスワードが6文字未満では登録できない' do
+      @user.password = 'mn12'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password","Password is too short (minimum is 6 characters)")
+    end
+    it '英字のみのパスワードでは登録できない' do
+      @user.password = 'monimoni'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it '数字のみのパスワードでは登録できない' do
+      @user.password = '248368'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it '全角文字を含むパスワードでは登録できない' do
+      @user.password = "ああiii2"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it 'パスワードとパスワード（確認用）が不一致だと登録できない' do
+      @user.password_confirmation = " "
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+
     it 'name_ueが無いとできない' do
       @user.name_ue = ' '
       @user.valid?
@@ -85,8 +113,8 @@ RSpec.describe User, type: :model do
 end
 
 # 以下はメモ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-it '' do
-end
+# it '' do
+# end
 # Nickname can't be blank
 # Name ue can't be blank
 # Name st can't be blank
@@ -98,3 +126,9 @@ end
 # カラム名 is invalid = 文字制限をしたときのエラー文
 # ・重複したメールアドレスは登録できない
 # ・メールアドレスに@を含まない場合は登録できない
+# パスワードが6文字未満では登録できない
+# ・英字のみのパスワードでは登録できない
+# ・数字のみのパスワードでは登録できない
+# ・全角文字を含むパスワードでは登録できない
+# ・パスワードとパスワード（確認用）が不一致だと登録できない
+# binding.pry

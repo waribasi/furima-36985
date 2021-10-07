@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :kana_ue, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
   validates :kana_st, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
   validates :birthday, presence: true
+  validates :password, format: { with:/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -16,3 +17,4 @@ class User < ApplicationRecord
 end
 
 # format: { with:}
+# /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
