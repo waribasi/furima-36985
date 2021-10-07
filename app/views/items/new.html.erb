@@ -5,11 +5,10 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with url: items_path, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -71,7 +70,6 @@
         </div>
         <%= f.collection_select(:del_fee_id, Delfee.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
-        <%# Del_fee.all %>
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
@@ -82,7 +80,6 @@
         </div>
         <%= f.collection_select(:del_day_id, Delday.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
-      <%# Dal_day.all %>
     </div>
 
     <%# 販売価格 %>
@@ -158,4 +155,3 @@
 
 
 <%# 以下はメモ-------------------------------------------------------------欄 %>
-<%# 「---、メンズ、レディース、ベビー・キッズ、インテリア・住まい・小物、本・音楽・ゲーム、おもちゃ・ホビー・グッズ、家電・スマホ・カメラ、スポーツ・レジャー、ハンドメイド、その他」 %>
