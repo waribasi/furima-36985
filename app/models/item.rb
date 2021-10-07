@@ -1,4 +1,14 @@
 class Item < ApplicationRecord
+
+  validates :item, presence: true
+  validates :exp, presence: true
+  validates :cate_id, presence: true
+  validates :status_id, presence: true
+  validates :del_fee_id, presence: true
+  validates :area_id, presence: true
+  validates :del_day_id, presence: true
+  validates :image, presence: true
+
   belongs_to :user
   has_one_attached :image
 end
