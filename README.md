@@ -26,7 +26,7 @@
 | area_id   | integer  | null: false                   | 発送元地域
 | del_day_id | integer | null: false                   | 配送日
 | price  | integer    | null: false                    | 価格
-| user | references | null: false, foreign_key: true   |出品者
+| user | references | null: false, foreign_key: true   | 出品者
 
 ### Association
 -belongs_to :user
