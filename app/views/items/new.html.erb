@@ -49,12 +49,12 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:cate_id, [], :cate_id, :cate_id, {}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:cate_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:status_id, [], :status_id, :status_id, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <%= f.collection_select(:status_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
 
@@ -69,17 +69,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:del_fee_id, [], :del_fee_id, :del_fee_id, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:del_fee_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:area_id, [], :area_id, :area_id, {}, {class:"select-box", id:"item-prefecture"}) %>
+        <%= f.collection_select(:area_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-prefecture"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:del_day_id, [], :del_day_id, :del_day_id, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:del_day_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
 
@@ -153,3 +153,7 @@
     </p>
   </footer>
 </div>
+
+
+<%# 以下はメモ-------------------------------------------------------------欄 %>
+<%# 「---、メンズ、レディース、ベビー・キッズ、インテリア・住まい・小物、本・音楽・ゲーム、おもちゃ・ホビー・グッズ、家電・スマホ・カメラ、スポーツ・レジャー、ハンドメイド、その他」 %>
