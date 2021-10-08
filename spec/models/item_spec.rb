@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe Item, type: :model do
 
   before do
@@ -19,7 +18,6 @@ RSpec.describe Item, type: :model do
       it '画像が選択してない時' do
         @item.image = nil
         @item.valid?
-        #  binding.pry
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名をない時' do
