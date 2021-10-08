@@ -19,9 +19,7 @@ class Area < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  # belongs_to :items
   has_many :items
   end
 
   # 以下はメモ欄-----------------------------
-  # belongs_to :itemsでも上手く起動していたので差分として記録、他のアクティブハッシュも同様に記録
