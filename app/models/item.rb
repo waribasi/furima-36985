@@ -13,11 +13,11 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-  belongs_to :area_id
-  belongs_to :cate_id
-  belongs_to :del_day_id
-  belongs_to :del_fee_id
-  belongs_to :status_id
+  belongs_to :area
+  belongs_to :cate
+  belongs_to :delday
+  belongs_to :delfee
+  belongs_to :status
 end
 
 # 以下はメモ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
