@@ -135,7 +135,6 @@
         <%= link_to "#" do %><%# (item.id) 後に使いそうなので残す%>
           <%= image_tag item.image, class: "item-img" %>
 
-
           <%# 商品が売れていればsold outを表示しましょう %>
           <%# ここは商品購入機能を実装してから実装する、試しようが無いため %>
           <%# <div class='sold-out'>
@@ -148,7 +147,7 @@
             <%= item.item %>
           </h3>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= item.del_fee_id %></span>
+            <span><%= item.price %>円<br><%= item.del_fee.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -161,6 +160,7 @@
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
+      <% if %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -182,7 +182,7 @@
       
     </ul>
   </div>
-  <%# /商品一覧 %>
+
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>

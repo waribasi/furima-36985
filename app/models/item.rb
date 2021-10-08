@@ -15,8 +15,8 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :area
   belongs_to :cate
-  belongs_to :delday
-  belongs_to :delfee
+  belongs_to :del_day
+  belongs_to :del_fee
   belongs_to :status
 end
 
