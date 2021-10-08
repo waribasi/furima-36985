@@ -27,7 +27,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Item can't be blank")
       end
-      it '説明文が無いとダメ' do
+      it '説明文が無い時' do
         @item.exp = ' '
         @item.valid?
         expect(@item.errors.full_messages).to include("Exp can't be blank")
@@ -37,40 +37,50 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Cate can't be blank")
       end
-      it '状態がわかんないとダメだね' do
+      it '状態選択してないとき' do
         @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
-      it '送料は無料じゃないよ？' do
+      it '送料が選択してない時' do
         @item.del_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Del fee can't be blank")
       end
-      it 'どこに住んでいるの？' do
+      it '都道府県を選択してない時' do
         @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Area can't be blank")
       end
-      it 'どれくらいで届く？' do
+      it '日数が選択してない時' do
         @item.del_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Del day can't be blank")
       end
-      it 'これいくらなん？' do
+      it '価格がない時' do
         @item.price = ' '
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '安すぎるのはだーめ' do
+      it '299円以下の時' do
         @item.price = 123
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
-      it '高すぎるのもだーめ' do
+      it '9999999円以上の時' do
         @item.price = 12345678903333333333333333
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+      it '価格に半角数字で入力された時' do
+        @item.price = 12,000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'userが紐付いていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
 
     end
