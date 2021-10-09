@@ -23,8 +23,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    if user_signed_in? && current_user.id == @item.user_id 
     @item.destroy
     redirect_to root_path
+    else
+      item_path
+    end
   end
 
 # 以下は今後の実装で使うコントローラーなので今はコメントアウトする
