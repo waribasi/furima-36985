@@ -22,14 +22,14 @@ class ItemsController < ApplicationController
   @item = Item.find(params[:id])
   end
   
+  def destroy
+  end
+  
 # 以下は今後の実装で使うコントローラーなので今はコメントアウトする
   # def edit
   # end
 
   # def update
-  # end
-
-  # def destroy
   # end
 
   # 7つのアクション全ての実装が完了したらルーティングのresourcesをまとめる
