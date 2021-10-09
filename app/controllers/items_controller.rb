@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
-  before_action :set_item, only: [:show, :destroy, :update]
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :set_item, only: [:show, :destroy, :edit, :update]
+  before_action :move_to_index, except: [:index, :new, :create, :update, :destroy, :show]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -32,7 +33,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -53,4 +53,10 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def move_to_index
+    unless @item.user.id == current_user.id  #投稿者idとログインユーザーのidが一致しなければ
+      redirect_to action: :index
+    end
+ end
 end
