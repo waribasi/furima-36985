@@ -18,11 +18,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  # 以下は今後の実装で使うコントローラーなので今はコメントアウトする
-  # def show
-  # @item = Item.find(params[:id])
-  # end
-
+  def show
+  @item = Item.find(params[:id])
+  end
+  
+# 以下は今後の実装で使うコントローラーなので今はコメントアウトする
   # def edit
   # end
 
