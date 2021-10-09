@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item.id)
    else
-    redirect_to edit_item_path
+    render :edit
    end
   end
 
@@ -60,3 +60,4 @@ class ItemsController < ApplicationController
     end
  end
 end
+
