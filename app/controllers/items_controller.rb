@@ -23,8 +23,11 @@ class ItemsController < ApplicationController
   end
   
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to root_path
   end
-  
+
 # 以下は今後の実装で使うコントローラーなので今はコメントアウトする
   # def edit
   # end
