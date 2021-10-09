@@ -31,15 +31,11 @@ class ItemsController < ApplicationController
     end
   end
 
-# 以下は今後の実装で使うコントローラーなので今はコメントアウトする
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  # end
-
-  # 7つのアクション全ての実装が完了したらルーティングのresourcesをまとめる
-# ここまで
+  def update
+  end
 
   private
 
