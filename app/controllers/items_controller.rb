@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
-  before_action :set_item, only: [:show, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :set_item, only: [:show, :destroy, :edit, :update]
+  before_action :move_to_index, except: [:index, :new, :create, :update, :destroy, :show]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -31,15 +32,17 @@ class ItemsController < ApplicationController
     end
   end
 
-# 以下は今後の実装で使うコントローラーなので今はコメントアウトする
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  # end
-
-  # 7つのアクション全ての実装が完了したらルーティングのresourcesをまとめる
-# ここまで
+  def update
+    @item.update(item_params)
+    if @item.save
+      redirect_to item_path(@item.id)
+   else
+    render :edit
+   end
+  end
 
   private
 
@@ -50,4 +53,11 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def move_to_index
+    unless @item.user.id == current_user.id  #投稿者idとログインユーザーのidが一致しなければ
+      redirect_to action: :index
+    end
+ end
 end
+
