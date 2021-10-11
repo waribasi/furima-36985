@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # @pur = Pur.new
   end
 
   def destroy
