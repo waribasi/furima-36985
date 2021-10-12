@@ -5,14 +5,11 @@ class PursController < ApplicationController
     @pur_shi_add = PurShiAdd.new
   end
 
-  def new
-    # @pur_shi_add = PurShiAdd.new
-  end
-
   def create
-    # binding.pry
+    @item = Item.find(params[:item_id])
     @pur_shi_add = PurShiAdd.new(pur_params)
     if @pur_shi_add.valid?
+      pay_item
       @pur_shi_add.save
       redirect_to root_path
     else
@@ -28,18 +25,19 @@ class PursController < ApplicationController
   end
 
   def pur_params
-    # ここにpur_shi_addのparamsをかく
-    params.require(:pur_shi_add).permit(:@item_price, :pos_code, :prefect_id, :add, :municipal, :build, :tel_num).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:pur_shi_add).permit(:@item_price, :pos_code, :prefect_id, :add, :municipal, :build, :tel_num).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
-  # fromオブジェクトの参考コード
-  # def donation_params
-  #   params.require(:donation_address).permit(:postal_code, :prefecture, :city, :house_number, :building_name, :price).merge(user_id: current_user.id)
-  # end
-
-
-  
-
+  def pay_item
+    # payjpの処理
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,  # 商品の値段
+      card: pur_params[:token],    # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
+    # payjpの処理
+  end
 end
 
 # 以下はメモ欄----------------------------------------------------------------------

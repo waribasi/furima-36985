@@ -1,6 +1,6 @@
 class PurShiAdd
   include ActiveModel::Model
-  attr_accessor :pos_code, :prefect_id, :municipal, :add, :build, :tel_num, :item, :del_fee, :price, :user_id, :item_id
+  attr_accessor :pos_code, :prefect_id, :municipal, :add, :build, :tel_num, :item, :del_fee, :price, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :pos_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -11,12 +11,12 @@ class PurShiAdd
     validates :municipal
     validates :add
     validates :tel_num, format: { with: /\A\d{10,11}\z/}
+    validates :token, presence: true
   end
   validates :prefect_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
     pur = Pur.create(item_id: item_id, user_id: user_id)
-    binding.pry
     ShiAdd.create(pos_code: pos_code, prefect_id: prefect_id, municipal: municipal, add: add, build: build, tel_num: tel_num, pur_id: pur.id)
   end
 end
