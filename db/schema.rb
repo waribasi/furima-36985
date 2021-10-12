@@ -69,8 +69,10 @@ ActiveRecord::Schema.define(version: 2021_10_10_110356) do
     t.string "add", null: false
     t.string "build"
     t.string "tel_num", null: false
+    t.bigint "pur_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["pur_id"], name: "index_shi_adds_on_pur_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -95,4 +97,5 @@ ActiveRecord::Schema.define(version: 2021_10_10_110356) do
   add_foreign_key "items", "users"
   add_foreign_key "purs", "items"
   add_foreign_key "purs", "users"
+  add_foreign_key "shi_adds", "purs"
 end

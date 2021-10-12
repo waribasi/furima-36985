@@ -30,8 +30,12 @@
       </p>
     </div>
     <%# /支払額の表示 %>
+<%# ここのmodelかurlが違う可能性がありそう... %>
+    <%= form_with(model: @pur_shi_add, url: item_purs_path, method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true) do |f| %>
 
-    <%= form_with model: @item_shi_add, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%# エラー文の表示 %>
+    <%= render 'shared/error_messages', model: f.object %>
+
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
@@ -122,7 +126,7 @@
     </div>
     <%# /配送先の入力 %>
     <div class='buy-btn'>
-      <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
+      <%= f.submit "購入", class:"buy-red-btn", id:"button" %>
     </div>
     <% end %>
   </div>
@@ -133,3 +137,8 @@
 <%# 以下はメモ欄 %>
 <%# item_purs %>
 <%# "input-expiration-date" %>
+<%# <%= render 'error_messages', model: @pur_shi_add %> 
+<%# method: :get %>
+<%# method: :post %>
+<%# , url: item_purs_path, method: :post, %>
+<%# pur_shi_adds_path %>

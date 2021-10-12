@@ -7,6 +7,7 @@ class CreateShiAdds < ActiveRecord::Migration[6.0]
       t.string :add,                   null: false
       t.string :build
       t.string :tel_num,               null: false
+      t.references :pur,               null: false, foreign_key: true
       t.timestamps
     end
   end

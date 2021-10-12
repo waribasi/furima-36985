@@ -2,6 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'items#index'
   resources :items do
-    resources :purs, only: [:index, :create]
+    resources :purs, only: [:index, :new, :create]
   end
 end
