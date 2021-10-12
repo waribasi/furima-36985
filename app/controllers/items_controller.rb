@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @item = Item.new(item_params)
     if @item.save
        redirect_to root_path
@@ -22,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # @pur = Pur.new
   end
 
   def destroy
@@ -57,7 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless @item.user.id == current_user.id  #投稿者idとログインユーザーのidが一致しなければ
+    unless @item.user.id == current_user.id
       redirect_to action: :index
     end
  end

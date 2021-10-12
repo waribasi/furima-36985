@@ -39,6 +39,7 @@ class PursController < ApplicationController
     )
     # payjpの処理
   end
+
 end
 
 # 以下はメモ欄----------------------------------------------------------------------

@@ -21,5 +21,3 @@ class Area < ActiveHash::Base
   include ActiveHash::Associations
   has_many :items
   end
-
-  # 以下はメモ欄-----------------------------
