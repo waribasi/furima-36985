@@ -26,10 +26,10 @@
     </div>
 
    <%# 商品が売れた場合は下を表示させないようにする %>
-     <% if @item.pur == nil %>
+     <% if user_signed_in? && @item.pur == nil %>
 
     <%# ログインしているユーザーと出品しているユーザーが同一人物の場合と同一人物ではない場合の処理 %>
-    <% if user_signed_in? && current_user.id == @item.user_id %>
+    <% if current_user.id == @item.user_id %>
     <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %> <%# edit_item_path 後で#と入れ替える%>
     <p class="or-text">or</p>
     <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
