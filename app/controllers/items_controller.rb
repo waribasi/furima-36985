@@ -59,5 +59,9 @@ class ItemsController < ApplicationController
       redirect_to action: :index
     end
  end
+
+#  def "購入した商品を一度しか購入できないようにする記述？"
+#  end
+
 end
 

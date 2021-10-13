@@ -4,6 +4,7 @@ class PursController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @pur_shi_add = PurShiAdd.new
+    move_to_index
   end
 
   def create
@@ -40,13 +41,12 @@ class PursController < ApplicationController
     # payjpの処理
   end
 
+  def move_to_index
+    unless @item.user.id != current_user.id
+      redirect_to root_path
+    end
+  end
+
 end
 
 # 以下はメモ欄----------------------------------------------------------------------
-# , item_id: params[:item_id]
-# user_id: current_user.id
-# (params[:id])
-# params.require(:order).permit(:price).merge(token: params[:token])
-# , token: params[:token]
-# item_id: item_id
-# item_id: ここに購入するitem_idを取得する
