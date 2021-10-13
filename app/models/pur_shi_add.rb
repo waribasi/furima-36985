@@ -26,3 +26,4 @@ end
 # 以下はメモ欄-----------------------------------------------
 # /\A\d{10,11}\z/
 # item_id: item.id
+# rails g rspec:model pur_shi_add

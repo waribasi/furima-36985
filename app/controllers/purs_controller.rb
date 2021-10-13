@@ -38,11 +38,10 @@ class PursController < ApplicationController
       card: pur_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
-    # payjpの処理
   end
 
   def move_to_index
-    unless @item.user.id != current_user.id
+    unless @item.user.id != current_user.id && @item.pur == nil
       redirect_to root_path
     end
   end
