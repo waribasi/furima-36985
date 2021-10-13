@@ -135,14 +135,12 @@
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
+          <%# 商品が売れたらSold Out!!を表示 %>
           <% if item.pur != nil %>
            <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <% end %>
-
-          <%# item.pur %>
 
         </div>
 
@@ -184,7 +182,6 @@
       </li>
       <% end %>
       
-      
     </ul>
   </div>
 
@@ -194,3 +191,6 @@
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
 <%= render "shared/footer" %>
+
+<%# 以下はメモ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー %>
+<%# コメントは何の処理をしている分かりやすくするために残す %>

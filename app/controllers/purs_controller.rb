@@ -1,30 +1,26 @@
 class PursController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @pur_shi_add = PurShiAdd.new
     move_to_index
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @pur_shi_add = PurShiAdd.new(pur_params)
     if @pur_shi_add.valid?
       pay_item
       @pur_shi_add.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render :index
     end
   end
 
   private
 
-  def item_params
-    params.require(:item).permit(:item, :exp, :cate, :status, :del_fee, :area, :del_day, :price).merge(user_id: current_user.id, item_id: params[:item_id])
-  end
+
 
   def pur_params
     params.require(:pur_shi_add).permit(:@item_price, :pos_code, :prefect_id, :add, :municipal, :build, :tel_num).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
@@ -44,6 +40,10 @@ class PursController < ApplicationController
     unless @item.user.id != current_user.id && @item.pur == nil
       redirect_to root_path
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end

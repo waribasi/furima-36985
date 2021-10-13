@@ -55,7 +55,12 @@ RSpec.describe PurShiAdd, type: :model do
         @pur_shi_add.valid?
         expect(@pur_shi_add.errors.full_messages).to include("Tel num is invalid")
       end
-      it 'tel_numのが10桁以上11桁以内ではないと保存できない' do
+      it 'tel_numが9桁以下では購入できない' do
+        @pur_shi_add.tel_num = '123456789'
+        @pur_shi_add.valid?
+        expect(@pur_shi_add.errors.full_messages).to include("Tel num is invalid")
+      end
+      it 'tel_numが12桁以上では購入できない' do
         @pur_shi_add.tel_num = '123456789'
         @pur_shi_add.valid?
         expect(@pur_shi_add.errors.full_messages).to include("Tel num is invalid")
@@ -72,14 +77,17 @@ RSpec.describe PurShiAdd, type: :model do
         expect(@pur_shi_add.errors.full_messages).to include("User can't be blank")
       end
 
+      it 'itemが紐付いていなければ出品できない' do
+        @pur_shi_add.item_id = nil
+        @pur_shi_add.valid?
+        expect(@pur_shi_add.errors.full_messages).to include("Item can't be blank")
+      end
+
+
+
     end
   end
 end
 
-
+# ここの単体テストを実行するコマンド
 # bundle exec rspec spec/models/pur_shi_add_spec.rb
-
-# binding.pry
-
-# it '' do
-# end

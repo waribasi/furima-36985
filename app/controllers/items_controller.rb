@@ -60,8 +60,5 @@ class ItemsController < ApplicationController
     end
  end
 
-#  def "購入した商品を一度しか購入できないようにする記述？"
-#  end
-
 end
 

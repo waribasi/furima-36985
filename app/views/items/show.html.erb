@@ -25,12 +25,12 @@
       </span>
     </div>
 
-   <%# 商品が売れた場合は下を表示させないようにする %>
+   <%# 商品が売れた場合は下を表示しない処理 %>
      <% if user_signed_in? && @item.pur == nil %>
 
     <%# ログインしているユーザーと出品しているユーザーが同一人物の場合と同一人物ではない場合の処理 %>
     <% if current_user.id == @item.user_id %>
-    <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %> <%# edit_item_path 後で#と入れ替える%>
+    <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
     <%# 商品が売れていない場合は購入画面 %>
@@ -39,7 +39,6 @@
     <% end %>
 
   <% end %>
-    <%# 商品が売れた場合は上を表示させないようにする %>
 
     <div class="item-explain-box">
       <span><%= @item.exp %></span>
@@ -107,9 +106,12 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  <%# 詳細ページで表示されている商品のカテゴリー名を表示 %>
   <a href="#" class="another-item"><%= @item.cate.name %>をもっと見る</a>
 
 </div>
 
 <%= render "shared/footer" %>
+
+<%# 以下はコメ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー %>
+<%# コメントアウトは何の処理をしているかを分かりやすくするため %>
