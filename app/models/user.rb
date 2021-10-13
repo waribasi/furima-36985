@@ -13,7 +13,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :items
-        #  has_many :purs
+         has_many :purs
 end
 
 # format: { with:}

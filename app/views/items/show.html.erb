@@ -1,3 +1,4 @@
+<%# コメントアウトは何の処理をしているかを分かりやすくするために残す %>
 <%= render "shared/header" %>
 
 <%# 商品の概要 %>
@@ -8,11 +9,13 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%# 商品購入機能を実装後に表示させる %>
-      <%# <div class="sold-out">
+      <%# 商品が売れている場合は、sold outを表示 %>
+      <% if @item.pur != nil %>
+      <div class="sold-out">
         <span>Sold Out!!</span>
-      </div> %>
+      </div> 
+      <% end %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -23,18 +26,20 @@
       </span>
     </div>
 
+   <%# 商品が売れた場合は下を表示しない処理 %>
+     <% if user_signed_in? && @item.pur == nil %>
+
     <%# ログインしているユーザーと出品しているユーザーが同一人物の場合と同一人物ではない場合の処理 %>
-  <% if user_signed_in? && current_user.id == @item.user_id %>
-    <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %> <%# edit_item_path 後で#と入れ替える%>
+    <% if current_user.id == @item.user_id %>
+    <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
-  <% end %>
-
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <% if user_signed_in? && current_user.id != @item.user_id %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%# 商品が売れていない場合は購入画面 %>
+     <% else %>
+    <%= link_to "購入画面に進む", item_purs_path(@item.id), method: :get, class:"item-red-btn"%>
     <% end %>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
+
+  <% end %>
 
     <div class="item-explain-box">
       <span><%= @item.exp %></span>
@@ -102,9 +107,12 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  <%# 詳細ページで表示されている商品のカテゴリー名を表示 %>
   <a href="#" class="another-item"><%= @item.cate.name %>をもっと見る</a>
 
 </div>
 
 <%= render "shared/footer" %>
+
+<%# 以下はコメ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー %>
+<%# コメントアウトは何の処理をしているかを分かりやすくするために残す %>

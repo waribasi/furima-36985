@@ -18,6 +18,7 @@ class Item < ApplicationRecord
   belongs_to :del_day
   belongs_to :del_fee
   belongs_to :status
+  has_one :pur
 end
 
 # 以下はメモ欄ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
