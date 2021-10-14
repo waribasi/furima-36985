@@ -313,4 +313,51 @@ a {
 /* タブレット表示時 */
 @media (max-width: 1024px) {
 
+
+}
+
+/* スマホ表示時 */
+@media (max-width: 599px) {
+
+
+  .ad-title {
+    font-size: 4vh;
+    margin-bottom: 2vh;
+  }
+
+  .ad-explain {
+    font-size: 1.4vh;
+    line-height: 30px;
+  }
+  
+  .service-title {
+    font-size: 5vh;
+  }
+
+  .apple-btn {
+    margin-right: 1vw;
+    height: 6vh;
+  }
+  
+  .google-btn {
+    height: 6vh;
+  }
+
+  .item-contents>.title {
+    font-size: 4vh;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+
+  .service-explain {
+    font-size: 2.3vh;
+    line-height: 39px;
+  }
+
+  .feature-list-text {
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 50px;
+  }
+
 }
