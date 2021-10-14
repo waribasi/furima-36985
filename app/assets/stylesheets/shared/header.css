@@ -102,3 +102,20 @@
   text-decoration: none;
   color: #333333;
 }
+
+/* タブレット表示時 */
+@media (max-width: 1024px) {
+
+  
+
+}
+
+/* スマホ表示時 */
+@media (max-width: 599px) {
+ 
+  .furima-icon {
+    width: 15vw;
+    margin-right: 10vw;
+  }
+
+}
